@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# Below is the chkconfig syntax for auto startup at different run levels
+# Note runlevel 1 2 and 3, 69 is the Start order and 68 is the Stop order
+# Make sure these are unique by looking into /etc/rc.d/*
+# Also below is the description which is necessary.
+#
+# chkconfig: 123 69 68
+# description: Node JS photos service
+#
+. /etc/init.d/functions
+
+case "$1" in
+start)
+echo -n "Start service photos"
+su node -c 'forever start /web/photos/app.js'
+;;
+stop)
+echo -n "Stop service photos"
+su node -c 'forever stop /web/photos/app.js'
+;;
+restart)
+echo -n "Restart service photos"
+su node -c 'forever restart /web/photos/app.js'
+;;
+status)
+echo -n "Status of service photos"
+su node -c 'forever list | grep photos'
+;;
+*)
+echo "Usage: $0 {start|stop|restart|status}"
+exit 1
+;;
+esac
+
