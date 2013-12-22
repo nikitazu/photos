@@ -8,6 +8,12 @@ var conf = require('../config');
 var imagesPath = conf.get('photosPath');
 console.log('path to photos: ' + imagesPath);
 
+var walkOptions = {
+  'follow_symlinks' : false,
+  'no_recurse' : false,
+  'max_depth' : 10
+};
+
 String.prototype.startsWith = function(prefix) {
     return this.indexOf(prefix) === 0;
 }
@@ -18,7 +24,7 @@ String.prototype.endsWith = function(suffix) {
 
 exports.index = function(req, res){
   var items = {};
-  walk.sync(imagesPath, function(path, stat) {
+  walk.sync(imagesPath, walkOptions, function(path, stat) {
     var relativePath = path.substring(imagesPath.length + 1);
     var parts = relativePath.split('/');
     var name = parts[parts.length - 1];
@@ -28,6 +34,7 @@ exports.index = function(req, res){
     var dir = parts.slice(0, parts.length - 1).join('/');
 
     if (stat.isDirectory()) {
+      console.log('adding subdir: ' + relativePath);
       items[relativePath] = [];
     } else if (stat.isFile() && dir !== '') {
       if (isPicture(name)) {
