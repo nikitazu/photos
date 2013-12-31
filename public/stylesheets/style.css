@@ -29,9 +29,12 @@ a {
   border: 2px solid black;
 }
 
-.folder > a {
+.folder {
   padding: 5px;
   margin: 5px;
+}
+
+.folder > a {
   border: 1px solid black;
   border-radius: 3px;
 }
