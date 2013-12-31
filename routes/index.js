@@ -4,7 +4,7 @@
  */
 
 var walk = require('walkdir');
-var imagesPath = '/web/photos/public/images';
+var imagesPath = '/misc/nas_photos';
 
 exports.index = function(req, res){
   var items = {};
@@ -18,7 +18,7 @@ exports.index = function(req, res){
     if (stat.isDirectory()) {
       items[relativePath] = [];
     } else if (stat.isFile()) {
-      items[dir].push({ 'url': relativePath, 'name': name });
+      items[dir].push({ 'url': '/images/nas/' + relativePath, 'name': name });
     }
   });
   res.render('index', {

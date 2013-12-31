@@ -38,7 +38,7 @@
         <ul class="content">
         <% dir.forEach(function(file) { %>
           <li>
-            <a href="javascript:preview('images/<%= file.url %>');" data-url="images/<%= file.url %>">
+            <a href="javascript:preview('<%= file.url %>');" data-url="<%= file.url %>">
               <%= file.name %>
             </a>
           </li>
