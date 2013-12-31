@@ -8,9 +8,6 @@ a {
 }
 
 .folders-list {
-  float: left;
-  width: 200px;
-  overflow-x: scroll;
   list-style: none;
 }
 
@@ -21,12 +18,6 @@ a {
 
 .content > li {
   margin: 5px;
-}
-
-.preview img {
-  width: 500px;
-  margin: 10px;
-  border: 2px solid black;
 }
 
 .folder {
