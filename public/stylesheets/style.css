@@ -11,10 +11,16 @@ a {
   float: left;
   width: 200px;
   overflow-x: scroll;
+  list-style: none;
 }
 
 .content {
   display: none;
+  list-style: none;
+}
+
+.content > li {
+  margin-bottom: 5px;
 }
 
 .preview img {
@@ -23,3 +29,9 @@ a {
   border: 2px solid black;
 }
 
+.folder > a {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
