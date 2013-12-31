@@ -1,0 +1,25 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.folders-list {
+  float: left;
+  width: 200px;
+  overflow-x: scroll;
+}
+
+.content {
+  display: none;
+}
+
+.preview img {
+  width: 500px;
+  margin: 10px;
+  border: 2px solid black;
+}
+

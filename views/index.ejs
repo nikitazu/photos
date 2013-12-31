@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/javascripts/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="/javascripts/slide.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('.folder > .name').click(function () {
+          $('.folder > .content').hide();
+          var content = $(this).parent().find('.content');
+          content.show();
+          
+          var viewer = new PhotoViewer();
+          content.children().each(function() {
+            viewer.add($(this).find('a').data('url'));
+          });
+          viewer.show(0);
+        });
+      });
+
+      function preview(url) {
+        $('.preview a').attr('href', url);
+        $('.preview img').attr('src', url);
+      }
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <ul class="folders-list">
+    <% Object.keys(photos).forEach(function(dirName) { %>
+    <% var dir = photos[dirName]; %>
+    <% if (dir.length > 0) { %>
+      <li class="folder">
+        <a href="javascript:void(0);" class="name"><%= dirName %></a>
+        <ul class="content">
+        <% dir.forEach(function(file) { %>
+          <li>
+            <a href="javascript:preview('images/<%= file.url %>');" data-url="images/<%= file.url %>">
+              <%= file.name %>
+            </a>
+          </li>
+        <% }); %>
+        </ul>
+      </li>
+    <% } %>
+    <% }) %>
+    </ul>
+    <div class="preview">
+      <a href="">
+        <img src="" alt="Photo was not loaded"></img>
+      </a>
+    </div>
+  </body>
+</html>
+
