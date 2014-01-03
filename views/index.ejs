@@ -7,14 +7,17 @@
     <script type="text/javascript" src="/javascripts/slide.js"></script>
     <script type="text/javascript">
       $(function() {
-        $('.folder > .name').click(function () {
+        $('.folder > .expand').click(function() {
           $('.folder > .content').hide();
           var content = $(this).parent().find('.content');
           content.show();
-          
+        });
+        
+        $('.folder > .name').click(function () {
+          var content = $(this).parent().find('.content');
           var viewer = new PhotoViewer();
           content.children().each(function() {
-            viewer.add($(this).find('a').data('url'));
+            viewer.add($(this).find('a').attr('href'));
           });
           viewer.show(0);
         });
@@ -29,11 +32,12 @@
     <% var dir = photos[dirName]; %>
     <% if (dir.length > 0) { %>
       <li class="folder">
-        <a href="javascript:void(0);" class="name"><%= dirName %></a>
+        <a class="expand" href="javascript:void(0);">+</a>
+        <a class="name" href="javascript:void(0);"><%= dirName %></a>
         <ul class="content">
         <% dir.forEach(function(file) { %>
           <li>
-            <a href="javascript:preview('<%= file.url %>');" data-url="<%= file.url %>">
+            <a href="<%= file.url %>">
               <%= file.name %>
             </a>
           </li>

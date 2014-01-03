@@ -31,9 +31,17 @@ a {
   border-radius: 3px;
   text-decoration: none;
   display: inline-block;
-  width: 100%;
 }
 
 .folder > a:hover {
   background-color: #eee;
+}
+
+.folder > a.name {
+  width: 90%;
+}
+
+.folder > a.expand {
+  float: left;
+  margin-right: 10px;
 }
